@@ -211,14 +211,14 @@ def belief_propagation(variants,rms_matrix,n_select_bp):
 
     forward_trans = []
     for level_rmsd in rms_matrix:
-        level = np.copy(level_rmsd)+0.1
+        level = np.copy(level_rmsd)+0.01
         sum_vec = np.sum(level, axis=1)
         level = level / sum_vec[:, None]
         forward_trans.append(level)
 
     backward_trans = []
     for level_rmsd in rms_matrix:
-        level = np.copy(level_rmsd.T)+0.1
+        level = np.copy(level_rmsd.T)+0.01
         sum_vec = np.sum(level, axis=1)
         level = level / sum_vec[:, None]
         backward_trans.append(level)
