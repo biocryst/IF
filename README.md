@@ -1,5 +1,6 @@
 # IF
-Coiled coils folding and intermediate filament models
+Coiled coils folding and intermediate filament models. Please see the Validation folder if you want to reproduce the benchmarking results in our paper.
+
 ```
 Usage: CCFold.py [-h] [-s] [-t one|termini|all] [-sp 100] [-bp 350] [-spp 50]
                  sequence [output_dir]
