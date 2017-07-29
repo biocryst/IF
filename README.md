@@ -1,5 +1,5 @@
 # IF
-Coiled coils folding and intermediate filament models. Please see the Validation folder if you want to reproduce the benchmarking results in our paper.
+Coiled coils folding and intermediate filament models. Please see the 'Validation' folder if you want to reproduce the benchmarking results in our paper. For an example of how to generate the fragment libraries, look into the scripts in the 'Fragments' folder.
 
 ```
 Usage: CCFold.py [-h] [-n 2|3] [-s] [-t one|termini|all] [-sp 100] [-bp 350] [-spp 50]
