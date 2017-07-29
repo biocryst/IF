@@ -2,7 +2,7 @@
 Coiled coils folding and intermediate filament models. Please see the Validation folder if you want to reproduce the benchmarking results in our paper.
 
 ```
-Usage: CCFold.py [-h] [-s] [-t one|termini|all] [-sp 100] [-bp 350] [-spp 50]
+Usage: CCFold.py [-h] [-n 2|3] [-s] [-t one|termini|all] [-sp 100] [-bp 350] [-spp 50]
                  sequence [output_dir]
 
 
@@ -16,7 +16,10 @@ Positional arguments:
 Optional arguments:
 
   -h, --help          show this help message and exit
-  
+ 
+  -n 2|3              Number of helices in a coiled coil. 2 (default) or 3 are
+                      supported ay the moment.
+
   -s                  Straighten the model. Prefer symmetric output at some
                       cost to smoothness. Number of fragments tried for each
                       segment is defined by the -spp parameter.
