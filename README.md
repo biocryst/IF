@@ -15,10 +15,10 @@ Positional arguments:
 
 Optional arguments:
 
-  -h, --help          show this help message and exit
+  -h, --help          Show this help message and exit
  
   -n 2|3              Number of helices in a coiled coil. 2 (default) or 3 are
-                      supported ay the moment.
+                      supported at the moment.
 
   -s                  Straighten the model. Prefer symmetric output at some
                       cost to smoothness. Number of fragments tried for each
