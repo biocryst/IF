@@ -439,7 +439,7 @@ def run():
 
     parser = argparse.ArgumentParser(description='Coiled coils folding')
     parser.add_argument('-n', action='store', default=2, choices=['2','3'],
-                    dest='n_cc_helices',metavar='2|3',help='Number of helices in a coiled coil. 2 (default) or 3 are supported ay the moment.')
+                    dest='n_cc_helices',metavar='2|3',help='Number of helices in a coiled coil. 2 (default) or 3 are supported at the moment.')
 
     parser.add_argument('-s', action='store_true', default=False,
                     dest='symmetric',help='Straighten the model. Prefer symmetric output at some cost to smoothness. '
