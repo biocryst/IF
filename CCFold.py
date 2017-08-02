@@ -489,7 +489,7 @@ def run():
         homooligomer = False
 
     print 'Segmenting the sequence...'
-    ss = split_sequence(target_seq, aas_sorted, args.segmentation_pool,aa_struct_prob, cc_coords_all)
+    ss = split_sequence(target_seq, aas_sorted, int(args.segmentation_pool),aa_struct_prob, cc_coords_all)
     dimer_overlap, start_inds, opt_rms = ss.run()
     print 'Sequence windows:'
     variants = []
