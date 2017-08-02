@@ -203,24 +203,23 @@ def pyrmsd_table(args):
     return np.square(rms_matrix)
 
 
-def sel_straight(coords_arr):
-    n_atoms_mono = int(coords_arr[0].shape[0] / 3)
+def sel_straight(coords_arr, n_cc_helices):
+    n_atoms_mono = int(coords_arr[0].shape[0] / n_cc_helices)
     chain_rmss = []
     for coords in coords_arr:
-        h1 = coords[:n_atoms_mono]
-        h2 = coords[n_atoms_mono:2*n_atoms_mono]
-        h3 = coords[2*n_atoms_mono:]
-        sup=SVDSuperimposer()
-        sup.set(h1,h2)
-        sup.run()
-        rms1 = sup.get_rms()
-        sup.set(h1,h3)
-        sup.run()
-        rms2 = sup.get_rms()
-        sup.set(h2,h3)
-        sup.run()
-        rms3 = sup.get_rms()
-        chain_rmss.append((rms1+rms2+rms3)/3)
+
+        hi_all = []
+        for i in range(n_cc_helices):
+            hi_all.append(coords[i * n_atoms_mono:(i + 1) * n_atoms_mono])
+
+        rmss = []
+        for i in range(n_cc_helices-1):
+            sup=SVDSuperimposer()
+            sup.set(hi_all[i],hi_all[i+1])
+            sup.run()
+            rms = sup.get_rms()
+            rmss.append(rms)
+        chain_rmss.append(np.mean(rmss))
 
     return np.argmin(chain_rmss), np.min(chain_rmss)
 
@@ -306,7 +305,7 @@ def straighten(cc_coords_all, dimer_overlap, rms_dict, variants,n_cc_helices):
         cand_coords = get_all_coords(cc_coords_all, cc_inds, dimer_overlap,n_cc_helices)
         cand_coords_arr.append(cand_coords)
 
-    straight_coords_ind, straight_rms = sel_straight(cand_coords_arr)
+    straight_coords_ind, straight_rms = sel_straight(cand_coords_arr, n_cc_helices)
     cc_inds, score = results_filt[straight_coords_ind]
     coords = cand_coords_arr[straight_coords_ind]
     return coords, score, straight_rms
@@ -554,7 +553,7 @@ def run():
         if args.symmetric:
             print 'Looking for straight models, this will take a while...'
             for ind_var1,var1 in enumerate(variants_arr1):
-                coords, score, straight_rms = straighten(cc_coords_all, dimer_overlap, rms_dict, var1)
+                coords, score, straight_rms = straighten(cc_coords_all, dimer_overlap, rms_dict, var1, n_cc_helices)
                 fname = prefix+"_{0:0.3f}_{1:0.3f}_{2:04d}".format(score, straight_rms,ind_var1)
                 write_model(coords, target_seq, os.path.join(args.output_dir, fname))
 
@@ -569,7 +568,7 @@ def run():
             for ind_var1,result in enumerate(results):
                 cc_inds, score = result
                 coords = get_all_coords(cc_coords_all, cc_inds, dimer_overlap,n_cc_helices)
-                tmp_var, straight_rms = sel_straight([coords])
+                tmp_var, straight_rms = sel_straight([coords], n_cc_helices)
                 fname = prefix + "_{0:0.3f}_{1:0.3f}_{2:04d}".format(score, straight_rms, ind_var1)
                 write_model(coords,target_seq,os.path.join(args.output_dir,fname))
 
