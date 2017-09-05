@@ -1,4 +1,6 @@
 # IF
+The online demo of CCFold is available [here](http://aws-website-ccfold-8gftw.s3-website-us-east-1.amazonaws.com/).
+
 Coiled coils folding and intermediate filament models. Please see the 'Validation' folder if you want to reproduce the benchmarking results in our paper. For an example of how to generate the fragment libraries, look into the scripts in the 'Fragments' folder.
 
 ```
