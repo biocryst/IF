@@ -1,5 +1,5 @@
 # IF
-The online demo of CCFold is available [here](http://aws-website-ccfold-8gftw.s3-website-us-east-1.amazonaws.com/).
+The online demo of CCFold is available [here](https://pharm.kuleuven.be/apps/biocryst/ccfold.php).
 
 If you use this program, please cite
 Guzenko, D., Strelkov, S. V. (2017). [CCFold: rapid and accurate prediction of coiled-coil structures and application to modelling intermediate filaments](https://academic.oup.com/bioinformatics/article/4103395/CCFold-rapid-and-accurate-prediction-of-coiled). *Bioinformatics*.
